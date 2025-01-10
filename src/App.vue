@@ -3,21 +3,18 @@
     <div class="max-w-6xl w-full backdrop-blur-xl bg-white/10 rounded-3xl p-8 shadow-2xl">
       <div class="flex justify-between items-center mb-8">
         <h1 class="text-4xl font-bold text-white">幸运抽奖</h1>
-        <div class="space-x-4">
-          <!-- 奖项选择 -->
-          <select 
-            v-model="currentPrizeLevel" 
-            class="px-4 py-2 bg-white/20 text-white rounded-xl border border-white/30 focus:outline-none"
-            :disabled="isDrawing"
-          >
-            <option 
-              v-for="prize in availablePrizes" 
-              :key="prize.level" 
-              :value="prize.level"
-            >
-              {{ prize.name }}（剩余{{ prize.count }}个）
-            </option>
-          </select>
+        
+        <!-- 当前奖项显示 -->
+        <div class="space-x-4 flex items-center">
+          <div class="text-white text-xl">
+            当前抽取：
+            <span :class="{
+              'text-yellow-400': currentPrizeLevel === 1,
+              'text-blue-400': currentPrizeLevel === 2
+            }">
+              {{ prizes.find(p => p.level === currentPrizeLevel)?.name }}
+            </span>
+          </div>
           
           <!-- 重置按钮 -->
           <button
@@ -151,25 +148,28 @@ import { colleagues, prizes } from './config/prizes'
 
 const currentPerson = ref(null)
 const isDrawing = ref(false)
-const currentPrizeLevel = ref(1) // 默认选择一等奖
 
 // 深拷贝同事数据，用于状态管理
 const colleaguesData = ref(JSON.parse(JSON.stringify(colleagues)))
 const prizesData = ref(JSON.parse(JSON.stringify(prizes)))
 
-// 计算剩余可用奖项
-const availablePrizes = computed(() => {
-  return prizesData.value.filter(prize => {
+// 自动计算当前应该抽取的奖项等级
+const currentPrizeLevel = computed(() => {
+  // 按照奖项等级从小到大遍历（1是最高等级）
+  for (const prize of prizesData.value) {
     const awardedCount = colleaguesData.value.filter(p => p.prize === prize.level).length
-    return awardedCount < prize.count
-  })
+    if (awardedCount < prize.count) {
+      return prize.level
+    }
+  }
+  return null // 所有奖项都抽完了
 })
 
 // 计算是否可以抽奖
 const canDraw = computed(() => {
   if (isDrawing.value) return true
   const availableColleagues = colleaguesData.value.filter(p => !p.prize)
-  return availableColleagues.length > 0 && availablePrizes.value.length > 0
+  return availableColleagues.length > 0 && currentPrizeLevel.value !== null
 })
 
 // 计算按钮文字
@@ -220,7 +220,6 @@ const resetDraw = () => {
   prizesData.value = JSON.parse(JSON.stringify(prizes))
   currentPerson.value = null
   isDrawing.value = false
-  currentPrizeLevel.value = 1
 }
 
 const toggleDraw = () => {

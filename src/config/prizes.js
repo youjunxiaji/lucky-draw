@@ -17,7 +17,7 @@ export const colleagues = [
   {
     id: 1,
     name: "张伟",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=张伟&gender=male",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=大叔&gender=male",
     department: "研发七部",
     title: "部门主管",
     prize: null, // null 表示未中奖，1 表示一等奖，2 表示二等奖

@@ -1,3 +1,5 @@
+import { getAvatar } from './utils';
+
 // 奖项配置
 export const prizes = [
   {
@@ -17,7 +19,7 @@ export const colleagues = [
   {
     id: 1,
     name: "张伟",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=大叔&gender=male",
+    avatar: getAvatar('zhangwei'),
     department: "研发七部",
     title: "部门主管",
     prize: null, // null 表示未中奖，1 表示一等奖，2 表示二等奖
@@ -25,7 +27,7 @@ export const colleagues = [
   {
     id: 2,
     name: "高利",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=高利&gender=male",
+    avatar: getAvatar('gaoli'),
     department: "GE",
     title: "高级客户",
     prize: null,
@@ -33,7 +35,7 @@ export const colleagues = [
   {
     id: 3,
     name: "袁晨曦",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=袁晨曦&gender=male",
+    avatar: getAvatar('yuanchenxi'),
     department: "研发七部",
     title: "设计工程师",
     prize: null,
@@ -41,7 +43,7 @@ export const colleagues = [
   {
     id: 4,
     name: "刘恒山",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=刘恒山&gender=male",
+    avatar: getAvatar('liuhengshan'),
     department: "研发七部",
     title: "仿真工程师",
     prize: null,
@@ -49,7 +51,7 @@ export const colleagues = [
   {
     id: 5,
     name: "宋如月",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=宋如月&gender=female",
+    avatar: getAvatar('songruyue'),
     department: "研发七部",
     title: "仿真工程师",
     prize: null,
@@ -57,7 +59,7 @@ export const colleagues = [
   {
     id: 6,
     name: "顾磊",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=顾磊&gender=male",
+    avatar: getAvatar('gulei'),
     department: "研发七部",
     title: "数字工程师",
     prize: null,
@@ -65,7 +67,7 @@ export const colleagues = [
   {
     id: 7,
     name: "徐辉",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=徐辉&gender=male",
+    avatar: getAvatar('xuhui'),
     department: "研发七部",
     title: "仿真工程师",
     prize: null,
@@ -73,7 +75,7 @@ export const colleagues = [
   {
     id: 8,
     name: "Bruiaka",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Bruiaka&gender=male",
+    avatar: getAvatar('bruiaka'),
     department: "研发七部",
     title: "全能选手",
     prize: null,

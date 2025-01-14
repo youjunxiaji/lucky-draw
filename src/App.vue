@@ -191,7 +191,7 @@ const { pause, resume } = useIntervalFn(() => {
   const availableColleagues = colleaguesData.value.filter(p => !p.prize)
   const randomIndex = Math.floor(Math.random() * availableColleagues.length)
   currentPerson.value = availableColleagues[randomIndex]
-}, 50, { immediate: false })
+}, 100, { immediate: false })
 
 // 创建礼花特效
 const createCelebration = () => {
